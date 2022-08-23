@@ -36,3 +36,24 @@ done
 
 #when shutting down first close/deregister the listener then shutdown/pause the vm
 #maybe using the monitor now it is enabled
+
+# NOTES
+
+# presumes a number of Host entries called `qvm-<something-appropriate>` in `~/.ssh/config` mapping ports and users etc
+# requires a bunch of Quickemu ,machines under $QUICKEMU_VMS with matching .confs
+# export QUICKEMU_VMS=/path/to/VMs/
+#     NB works fine with a directory full of symlinks to the main VM collection
+#        and you can disable a runner VM by commenting out the ssh Host and/or renaming or removing the .conf
+# TODO
+#
+# Install / update / re-register the runner
+# Install/use CM tooling
+#  - cloud-init ?
+#  - Ansible
+#  - Puppet
+#  - Chef
+#  - Foreman
+#
+#  Use snapshots for a clean baseline config
+#  Use docker for a cleaner and tighter CI setup
+#  slim all the things
