@@ -2,6 +2,9 @@ QUICKEMU_VMS=${QUICKEMU_VMS:-"${HOME}/quickemu"}
 # set QMU_DISPLAY=spice in your env if you want to fire up
 # all the gui joy on $DISPLAY
 QMU_DISPLAY=${QMU_DISPLAY:-none}
+if [ -n $DEBUG ] ;then
+echo DEBUG set to ${DEBUG} so machines may not run
+else echo no; fi
 
 cd ${QUICKEMU_VMS}
 
@@ -31,7 +34,7 @@ while [[ $y -lt $i ]];do
     #echo ${vm} ;
     sshport=${qvmports[$y]}
     if [ ! -z ${vm} ]; then
-        quickemu --vm  "${vm}"  --ssh-port  "${sshport}" --display "${QMU_DISPLAY}"
+        $DEBUG quickemu --vm  "${vm}"  --ssh-port  "${sshport}" --display "${QMU_DISPLAY}"
     else
         # if you dont want to be filling with ssh configs all the time
         # leave them be and omit <vm>.conf files/symlinks from the QUICKEMU_VMS directory
