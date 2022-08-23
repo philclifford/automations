@@ -1,27 +1,46 @@
 QUICKEMU_VMS=${QUICKEMU_VMS:-"${HOME}/quickemu"}
+# set QMU_DISPLAY=spice in your env if you want to fire up
+# all the gui joy on $DISPLAY
 QMU_DISPLAY=${QMU_DISPLAY:-none}
 
 cd ${QUICKEMU_VMS}
 
+# get array of Host and port setting for
+# test vms to make ssh access less tiresome
+
 qvmports=($(grep -A1 qvm ~/.ssh/config|grep -v '^#'|cut -d\  -f2))
 
+# Now may need to add port-forwarding to the ssh configs as
+# spice will be bound to localhost and so remote access will
+# need a remote display/gui setting up  or port-forwarding
 
+# On the VM host it is very helpful to have quickgui around but for monitoring and
+# running these test scenarios ssh is handy
+# TODO: confugure a tmux/screen/terminator/.. session with tiled access
+# to all the running VMs
 
-
+# We have found this many qvm- entries
 i=${#qvmports[@]}
+# two-part harmony required, starting from a 0 index
 x=0;y=1
 
 while [[ $y -lt $i ]];do
     #echo ${qvmports[$x]}
+    #
     vm=$(ls *$(echo ${qvmports[$x]}|cut -d\- -f2)*conf | sort -n|tail -1 ) > /dev/null 2>&1 ;
     #echo ${vm} ;
     sshport=${qvmports[$y]}
     if [ ! -z ${vm} ]; then
         quickemu --vm  "${vm}"  --ssh-port  "${sshport}" --display "${QMU_DISPLAY}"
     else
+        # if you dont want to be filling with ssh configs all the time
+        # leave them be and omit <vm>.conf files/symlinks from the QUICKEMU_VMS directory
+
+        #
         echo " WARN: ${qvmports[$x]} not present in ${QUICKEMU_VMS}"
         echo "         Presumed disabled"
     fi
+    # skip to next pair of host and port values
     x=$((x + 2 )); y=$((y +  2))
 done
 
