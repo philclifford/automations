@@ -1,4 +1,4 @@
-# automations
+# Automations
 A learning area where I try out automations and integrations and learn their benefits and limits (or more likely mine)
 
 Feel free to try these out but this all comes with the standard warranty: it _will_ break stuff and you get to keep the bits.
