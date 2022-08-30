@@ -350,7 +350,11 @@ MigrationBackup/
 .ionide/
 ### Obsidian and workdir artifacts and links
 .obsidian
-quickemu/testvms/
+
 .obsidian/cache
+# recommended to avoid confusion in collab
+#.obsidian/workspace
 .trash/
 .DS_Store
+# My symlinks upset android so skip 'em
+quickemu/testvms/
