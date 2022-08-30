@@ -1,16 +1,16 @@
 # Automations
+
 A learning area where I try out automations and integrations and learn their benefits and limits (or more likely mine)
 
 Feel free to try these out but this all comes with the standard warranty: it _will_ break stuff and you get to keep the bits.
 
-
 First a [shonky shell script](quickemu/runtestvms.sh) to spin up a bunch of pre-created QuickEmu VMs to host :
 
- * github action_runners
- * gitlab runners
- * ....
+* github action_runners
+* gitlab runners
+* ....
 
- for handling automated testing via Github workflows
+ for handling automated testing via Github [workflows](./github/workflows.md)
 
 Next we'll have a look at containerizing some or all of our test runners (because: disosable, repeatable, portable, denser and more lightweight, slimable) using docker (maybe k8s, maybe lxd)
 
