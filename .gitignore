@@ -351,3 +351,6 @@ MigrationBackup/
 ### Obsidian and workdir artifacts and links
 .obsidian
 quickemu/testvms/
+.obsidian/cache
+.trash/
+.DS_Store
